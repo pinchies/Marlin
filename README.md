@@ -1,7 +1,6 @@
 ﻿# Marlin 3D Printer Firmware for JGAurora A5, A5S and A1
 
-Firmware for JGAurora A5, A5S and A1. Choose the correct branch above.
-
+Firmware for JGAurora A5, A5S and A1. Choose the correct branch above. 👈
 
 [![Build Status](https://travis-ci.org/MarlinFirmware/Marlin.svg?branch=bugfix-2.0.x)](https://travis-ci.org/MarlinFirmware/Marlin)
 ![GitHub](https://img.shields.io/github/license/marlinfirmware/marlin.svg)
