@@ -52,7 +52,7 @@ static char _ALIGN(4) HAL_eeprom_data[HAL_EEPROM_SIZE];
 
     SdFile file, root = card.getroot();
     if (!file.open(&root, EEPROM_FILENAME, O_RDONLY))
-      return false;
+      return true; // false aborts the save
 
     int bytes_read = file.read(HAL_eeprom_data, HAL_EEPROM_SIZE);
     if (bytes_read < 0) return false;
@@ -80,7 +80,7 @@ static char _ALIGN(4) HAL_eeprom_data[HAL_EEPROM_SIZE];
 
 #endif // !SDSUPPORT
 
-bool PersistentStore::write_data(int &pos, const uint8_t *value, const size_t size, uint16_t *crc) {
+bool PersistentStore::write_data(int &pos, const uint8_t *value, size_t size, uint16_t *crc) {
   for (size_t i = 0; i < size; i++)
     HAL_eeprom_data[pos + i] = value[i];
   crc16(crc, value, size);
