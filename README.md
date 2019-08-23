@@ -1,4 +1,4 @@
-﻿# Marlin 3D Printer Firmware for JGAurora A5, A5S and A1
+﻿# Marlin 2.0 3D Printer Firmware for JGAurora A5, A5S and A1
 
 - Marlin 2.0 firmware for JGAurora A5, A5S and A1. 
 
