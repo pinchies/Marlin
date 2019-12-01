@@ -1,5 +1,7 @@
 ﻿# Marlin 2.0 3D Printer Firmware for JGAurora A5, A5S and A1
 
+- UPDATE Dec 2019: Please see https://jgauroraforum.com/discussion/945/current-firmware-status-update-dec-1-2019/p1?new=1
+
 - Marlin 2.0 firmware for JGAurora A5, A5S and A1. 
 
 - **Choose the correct branch above for your model first**. 
