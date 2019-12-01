@@ -1,4 +1,6 @@
 ﻿# Marlin 3D Printer Firmware
+ **UPDATE Dec 2019: Please see https://jgauroraforum.com/discussion/945/current-firmware-status-update-dec-1-2019/p1?new=1**
+
 
 [![Build Status](https://travis-ci.org/MarlinFirmware/Marlin.svg?branch=bugfix-2.0.x)](https://travis-ci.org/MarlinFirmware/Marlin)
 ![GitHub](https://img.shields.io/github/license/marlinfirmware/marlin.svg)
