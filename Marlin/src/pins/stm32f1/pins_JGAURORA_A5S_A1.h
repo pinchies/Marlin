@@ -31,13 +31,20 @@
 #if NOT_TARGET(__STM32F1__)
   #error "Oops! Select an STM32F1 board in 'Tools > Board.'"
 #elif HOTENDS > 1 || E_STEPPERS > 1
-  #error "JGAurora 32-bit board only supports 1 hotend / E-stepper. Comment out this line to continue."
+  #error "JGAurora A5S A1 only supports one hotend / E-stepper. Comment out this line to continue."
 #endif
-#define BOARD_INFO_NAME "JGAurora A5S A1 board"
+
+#define BOARD_INFO_NAME "JGAurora A5S A1"
+
+#define BOARD_NO_NATIVE_USB
 
 #ifndef STM32_XL_DENSITY
   #define STM32_XL_DENSITY
 #endif
+#ifndef MCU_STM32F103ZE
+  #define MCU_STM32F103ZE
+#endif
+
 
 //#define MCU_STM32F103ZE // not yet required
 // Enable EEPROM Emulation for this board, so that we don't overwrite factory data
@@ -45,12 +52,15 @@
 //#define I2C_EEPROM                              // AT24C64
 //#define MARLIN_EEPROM_SIZE            0x8000UL  // 64KB
 
-//#define FLASH_EEPROM_EMULATION
+  #define FLASH_EEPROM_EMULATION
+  #define EEPROM_PAGE_SIZE     (0x800U)           // 2KB
+  #define EEPROM_START_ADDRESS (0x8000000UL + (STM32_FLASH_SIZE) * 1024UL - (EEPROM_PAGE_SIZE) * 2UL)
+  //#define EEPROM_START_ADDRESS (0x800A000UL + (STM32_FLASH_SIZE) * 1024UL - (EEPROM_PAGE_SIZE) * 2UL)
+  #define MARLIN_EEPROM_SIZE    EEPROM_PAGE_SIZE  // 2KB
+
+
 //#define MARLIN_EEPROM_SIZE            0x1000UL  // 4KB
 //#define MARLIN_EEPROM_SIZE (EEPROM_START_ADDRESS + (EEPROM_PAGE_SIZE) * 2UL)
-
-//#define EEPROM_CHITCHAT
-//#define DEBUG_EEPROM_READWRITE
 
 //
 // Limit Switches
@@ -112,6 +122,12 @@
 #define FSMC_DMA_DEV                        DMA2
 #define FSMC_DMA_CHANNEL                 DMA_CH5
 
+#if ENABLED(TFT_COLOR_UI)
+  // Color UI
+  #define TFT_DRIVER                     ILI9488
+  #define TFT_BUFFER_SIZE                  14400
+#endif
+
 //
 // SD Card
 //
@@ -130,3 +146,5 @@
   #define TOUCH_CS_PIN                      PA4
   #define TOUCH_INT_PIN                     PC4
 #endif
+
+#define SDIO_READ_RETRIES 16

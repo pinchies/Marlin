@@ -132,8 +132,8 @@
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define MACHINE_NAME "JGMaker A5S"
-#define CUSTOM_MACHINE_NAME "JGMaker A5S"
+#define MACHINE_NAME "JGMaker A3S"
+#define CUSTOM_MACHINE_NAME "JGMaker A3S"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
@@ -1160,16 +1160,16 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 310
-#define Y_BED_SIZE 310
+#define X_BED_SIZE 205
+#define Y_BED_SIZE 205
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
-#define Y_MIN_POS 0
+#define Y_MIN_POS -10
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
-#define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 330
+#define Y_MAX_POS Y_BED_SIZE+10
+#define Z_MAX_POS 205
 
 /**
  * Software Endstops
@@ -1489,9 +1489,9 @@
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-#define MANUAL_X_HOME_POS -6
-#define MANUAL_Y_HOME_POS 0
-#define MANUAL_Z_HOME_POS 0
+//#define MANUAL_X_HOME_POS 0
+#define MANUAL_Y_HOME_POS -7
+//#define MANUAL_Z_HOME_POS 0
 
 // Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
 //
