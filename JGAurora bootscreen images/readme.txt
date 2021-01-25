@@ -1,0 +1,1 @@
+To use these images, replace the bootscreen image with the correct one for your printer model: \Marlin\src\lcd\tft\images\bootscreen_320x240x16.cpp
