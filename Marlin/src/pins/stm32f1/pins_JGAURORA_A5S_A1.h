@@ -124,7 +124,7 @@
 
 #if ENABLED(TFT_COLOR_UI)
   // Color UI
-  #define TFT_DRIVER                     ILI9488
+  //#define TFT_DRIVER                     ILI9488
   #define TFT_BUFFER_SIZE                  14400
 #endif
 
