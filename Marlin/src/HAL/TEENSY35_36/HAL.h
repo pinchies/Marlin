@@ -80,17 +80,6 @@ typedef int8_t pin_t;
 #undef sq
 #define sq(x) ((x)*(x))
 
-#ifndef strncpy_P
-  #define strncpy_P(dest, src, num) strncpy((dest), (src), (num))
-#endif
-
-// Fix bug in pgm_read_ptr
-#undef pgm_read_ptr
-#define pgm_read_ptr(addr) (*((void**)(addr)))
-// Add type-checking to pgm_read_word
-#undef pgm_read_word
-#define pgm_read_word(addr) (*((uint16_t*)(addr)))
-
 inline void HAL_init() {}
 
 // Clear reset reason
@@ -103,12 +92,16 @@ inline void HAL_reboot() {}  // reboot the board or restart the bootloader
 
 FORCE_INLINE void _delay_ms(const int delay_ms) { delay(delay_ms); }
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-function"
-extern "C" {
-  int freeMemory();
-}
-#pragma GCC diagnostic pop
+#if GCC_VERSION <= 50000
+  #pragma GCC diagnostic push
+  #pragma GCC diagnostic ignored "-Wunused-function"
+#endif
+
+extern "C" int freeMemory();
+
+#if GCC_VERSION <= 50000
+  #pragma GCC diagnostic pop
+#endif
 
 // ADC
 

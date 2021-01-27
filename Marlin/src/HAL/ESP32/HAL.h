@@ -67,10 +67,6 @@ extern portMUX_TYPE spinlock;
 #define ENABLE_ISRS()  if (spinlock.owner != portMUX_FREE_VAL) portEXIT_CRITICAL(&spinlock)
 #define DISABLE_ISRS() portENTER_CRITICAL(&spinlock)
 
-// Fix bug in pgm_read_ptr
-#undef pgm_read_ptr
-#define pgm_read_ptr(addr) (*(addr))
-
 // ------------------------
 // Types
 // ------------------------
@@ -90,6 +86,13 @@ extern uint16_t HAL_adc_result;
 // Public functions
 // ------------------------
 
+//
+// Tone
+//
+void toneInit();
+void tone(const pin_t _pin, const unsigned int frequency, const unsigned long duration=0);
+void noTone(const pin_t _pin);
+
 // clear reset reason
 void HAL_clear_reset_source();
 
@@ -100,10 +103,16 @@ inline void HAL_reboot() {}  // reboot the board or restart the bootloader
 
 void _delay_ms(int delay);
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-function"
+#if GCC_VERSION <= 50000
+  #pragma GCC diagnostic push
+  #pragma GCC diagnostic ignored "-Wunused-function"
+#endif
+
 int freeMemory();
-#pragma GCC diagnostic pop
+
+#if GCC_VERSION <= 50000
+  #pragma GCC diagnostic pop
+#endif
 
 void analogWrite(pin_t pin, int value);
 
