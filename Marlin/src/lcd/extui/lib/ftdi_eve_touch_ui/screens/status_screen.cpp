@@ -21,11 +21,10 @@
  ****************************************************************************/
 
 #include "../config.h"
-
-#if ENABLED(TOUCH_UI_FTDI_EVE) && NONE(TOUCH_UI_LULZBOT_BIO, TOUCH_UI_COCOA_PRESS)
-
 #include "screens.h"
 #include "screen_data.h"
+
+#ifdef FTDI_STATUS_SCREEN
 
 #include "../archim2-flash/flash_storage.h"
 
@@ -325,7 +324,7 @@ void StatusScreen::draw_interaction_buttons(draw_mode_t what) {
   #undef  GRID_COLS
 }
 
-void StatusScreen::draw_status_message(draw_mode_t what, const char* message) {
+void StatusScreen::draw_status_message(draw_mode_t what, const char *message) {
   #define GRID_COLS 1
 
   #if ENABLED(TOUCH_UI_PORTRAIT)
@@ -351,7 +350,7 @@ void StatusScreen::setStatusMessage(progmem_str message) {
   setStatusMessage((const char *) buff);
 }
 
-void StatusScreen::setStatusMessage(const char* message) {
+void StatusScreen::setStatusMessage(const char *message) {
   if (CommandProcessor::is_processing()) {
     #if ENABLED(TOUCH_UI_DEBUG)
       SERIAL_ECHO_MSG("Cannot update status message, command processor busy");
@@ -462,4 +461,4 @@ bool StatusScreen::onTouchEnd(uint8_t tag) {
   return true;
 }
 
-#endif // TOUCH_UI_FTDI_EVE
+#endif // FTDI_STATUS_SCREEN

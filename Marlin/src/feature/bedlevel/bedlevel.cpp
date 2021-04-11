@@ -98,7 +98,7 @@ TemporaryBedLevelingState::TemporaryBedLevelingState(const bool enable) : saved(
 
 #if ENABLED(ENABLE_LEVELING_FADE_HEIGHT)
 
-  void set_z_fade_height(const float zfh, const bool do_report/*=true*/) {
+  void set_z_fade_height(const_float_t zfh, const bool do_report/*=true*/) {
 
     if (planner.z_fade_height == zfh) return;
 
@@ -160,7 +160,7 @@ void reset_bed_level() {
     #ifndef SCAD_MESH_OUTPUT
       LOOP_L_N(x, sx) {
         serial_spaces(precision + (x < 10 ? 3 : 2));
-        SERIAL_ECHO(int(x));
+        SERIAL_ECHO(x);
       }
       SERIAL_EOL();
     #endif
@@ -172,7 +172,7 @@ void reset_bed_level() {
         SERIAL_ECHOPGM(" [");             // open sub-array
       #else
         if (y < 10) SERIAL_CHAR(' ');
-        SERIAL_ECHO(int(y));
+        SERIAL_ECHO(y);
       #endif
       LOOP_L_N(x, sx) {
         SERIAL_CHAR(' ');
@@ -196,7 +196,7 @@ void reset_bed_level() {
         #endif
       }
       #ifdef SCAD_MESH_OUTPUT
-        SERIAL_CHAR(' ', ']');            // close sub-array
+        SERIAL_ECHOPGM(" ]");            // close sub-array
         if (y < sy - 1) SERIAL_CHAR(',');
       #endif
       SERIAL_EOL();
@@ -213,7 +213,7 @@ void reset_bed_level() {
 
   void _manual_goto_xy(const xy_pos_t &pos) {
 
-    #ifdef MANUAL_PROBE_START_Z
+    #if defined(MANUAL_PROBE_START_Z) && !defined(MESH_BED_LEVELING)
       constexpr float startz = _MAX(0, MANUAL_PROBE_START_Z);
       #if MANUAL_PROBE_HEIGHT > 0
         do_blocking_move_to_xy_z(pos, MANUAL_PROBE_HEIGHT);

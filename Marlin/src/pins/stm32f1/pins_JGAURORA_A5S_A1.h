@@ -28,9 +28,9 @@
   *   Pin assignments for 32-bit JGAurora A5S & A1
   */
 
-#if NOT_TARGET(__STM32F1__)
-  #error "Oops! Select an STM32F1 board in 'Tools > Board.'"
-#elif HOTENDS > 1 || E_STEPPERS > 1
+#include "env_validate.h"
+
+#if HOTENDS > 1 || E_STEPPERS > 1
   #error "JGAurora A5S A1 only supports one hotend / E-stepper. Comment out this line to continue."
 #endif
 
@@ -46,7 +46,6 @@
 #endif
 
 
-//#define MCU_STM32F103ZE // not yet required
 // Enable EEPROM Emulation for this board, so that we don't overwrite factory data
 
 //#define I2C_EEPROM                              // AT24C64
@@ -138,6 +137,8 @@
 //
 #define BEEPER_PIN                          PC3   // use PB7 to shut up if desired
 #define LED_PIN                             PC13
+// #define POWER_LOSS_PIN                      PA0
+// #define POWER_LOSS_STATE                    LOW
 
 //
 // Touch support

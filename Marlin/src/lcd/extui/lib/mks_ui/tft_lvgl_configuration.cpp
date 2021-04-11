@@ -64,13 +64,13 @@ XPT2046 touch;
 #endif
 
 #if HAS_SPI_FLASH_FONT
-  extern void init_gb2312_font();
+  void init_gb2312_font();
 #endif
 
 static lv_disp_buf_t disp_buf;
 lv_group_t*  g;
 #if ENABLED(SDSUPPORT)
-  extern void UpdateAssets();
+  void UpdateAssets();
 #endif
 uint16_t DeviceCode = 0x9488;
 extern uint8_t sel_id;
@@ -89,8 +89,8 @@ void SysTick_Callback() {
   #endif
   if (uiCfg.filament_loading_time_flg) {
     uiCfg.filament_loading_time_cnt++;
-    uiCfg.filament_rate = (uint32_t)(((uiCfg.filament_loading_time_cnt / (uiCfg.filament_loading_time * 1000.0)) * 100.0) + 0.5);
-    if (uiCfg.filament_loading_time_cnt >= (uiCfg.filament_loading_time * 1000)) {
+    uiCfg.filament_rate = uint32_t(100.0f * uiCfg.filament_loading_time_cnt / SEC_TO_MS(uiCfg.filament_loading_time) + 0.5f);
+    if (uiCfg.filament_loading_time_cnt >= SEC_TO_MS(uiCfg.filament_loading_time)) {
       uiCfg.filament_loading_time_cnt  = 0;
       uiCfg.filament_loading_time_flg  = false;
       uiCfg.filament_loading_completed = true;
@@ -98,8 +98,8 @@ void SysTick_Callback() {
   }
   if (uiCfg.filament_unloading_time_flg) {
     uiCfg.filament_unloading_time_cnt++;
-    uiCfg.filament_rate = (uint32_t)(((uiCfg.filament_unloading_time_cnt / (uiCfg.filament_unloading_time * 1000.0)) * 100.0) + 0.5);
-    if (uiCfg.filament_unloading_time_cnt >= (uiCfg.filament_unloading_time * 1000)) {
+    uiCfg.filament_rate = uint32_t(100.0f * uiCfg.filament_unloading_time_cnt / SEC_TO_MS(uiCfg.filament_unloading_time) + 0.5f);
+    if (uiCfg.filament_unloading_time_cnt >= SEC_TO_MS(uiCfg.filament_unloading_time)) {
       uiCfg.filament_unloading_time_cnt  = 0;
       uiCfg.filament_unloading_time_flg  = false;
       uiCfg.filament_unloading_completed = true;
@@ -190,9 +190,7 @@ void tft_lvgl_init() {
   #endif
 
   tft_style_init();
-
   filament_pin_setup();
-
   lv_encoder_pin_init();
 
   TERN_(MKS_WIFI_MODULE, mks_wifi_firmware_update());
@@ -211,7 +209,7 @@ void tft_lvgl_init() {
 
       strncpy(public_buf_m, recovery.info.sd_filename, sizeof(public_buf_m));
       card.printLongPath(public_buf_m);
-      strncpy(list_file.long_name[sel_id], card.longFilename, sizeof(list_file.long_name[sel_id]));
+      strncpy(list_file.long_name[sel_id], card.longFilename, sizeof(list_file.long_name[0]));
       lv_draw_printing();
     }
   #endif
