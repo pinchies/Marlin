@@ -624,7 +624,7 @@
 #elif MB(MKS_ROBIN_LITE3)
   #include "stm32f1/pins_MKS_ROBIN_LITE3.h"         // STM32F1                              env:mks_robin_lite3 env:mks_robin_lite3_maple
 #elif MB(MKS_ROBIN_PRO)
-  #include "stm32f1/pins_MKS_ROBIN_PRO.h"           // STM32F1                              env:mks_robin_pro env:mks_robin_pro_maple
+  #include "stm32f1/pins_MKS_ROBIN_PRO.h"           // STM32F1                              env:mks_robin_pro env:mks_robin_pro_maple env:mks_robin_pro_artist_d_maple
 #elif MB(MKS_ROBIN_E3)
   #include "stm32f1/pins_MKS_ROBIN_E3.h"            // STM32F1                              env:mks_robin_e3 env:mks_robin_e3_maple
 #elif MB(MKS_ROBIN_E3_V1_1)

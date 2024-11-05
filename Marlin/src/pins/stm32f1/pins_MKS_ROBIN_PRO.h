@@ -41,14 +41,15 @@
 //
 #define DISABLE_DEBUG
 
+#define SDCARD_EEPROM_EMULATION
 //
 // Onboard I2C EEPROM
-//
-#define IIC_BL24CXX_EEPROM                // Use I2C EEPROM onboard IC (AT24C04C, Size 4K, PageSize 16B)
-#define MARLIN_EEPROM_SIZE                0x1000  // 4K
-#define IIC_EEPROM_SDA                      PB7
-#define IIC_EEPROM_SCL                      PB6
-#define EEPROM_DEVICE_ADDRESS             0xA0
+// 
+// #define IIC_BL24CXX_EEPROM                // Use I2C EEPROM onboard IC (AT24C04C, Size 4K, PageSize 16B)
+// #define MARLIN_EEPROM_SIZE                0x1000  // 4K
+// #define IIC_EEPROM_SDA                      PB7
+// #define IIC_EEPROM_SCL                      PB6
+// #define EEPROM_DEVICE_ADDRESS             0xA0
 
 //
 // SPI
@@ -192,6 +193,7 @@
 //#define TEMP_0_CS_PIN                     PF11  // TC2 - CS2
 
 #define POWER_LOSS_PIN                      PA2   // PW_DET
+#define PS_ON_PIN                           PG11  // PW_OFF
 #define FIL_RUNOUT_PIN                      PA4   // MT_DET1
 #define FIL_RUNOUT2_PIN                     PE6   // MT_DET2
 #define FIL_RUNOUT3_PIN                     PG14  // MT_DET3

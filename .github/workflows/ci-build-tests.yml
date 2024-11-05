@@ -135,6 +135,7 @@ jobs:
         - jgaurora_a5s_a1_maple
         - mks_robin_lite_maple
         - mks_robin_pro_maple
+        - mks_robin_pro_artist_d_maple
         - STM32F103RC_btt_USB_maple
         - STM32F103RC_fysetc_maple
         - STM32F103RC_meeb_maple
